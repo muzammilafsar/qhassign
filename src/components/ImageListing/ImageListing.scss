@@ -1,0 +1,20 @@
+.image-listing-container{
+
+    .image-card {
+        padding: 10px 10px;
+        position: relative;
+        .fav {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            font-size: 25px;
+        }
+        .checked {
+            color: orange;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        }
+}
