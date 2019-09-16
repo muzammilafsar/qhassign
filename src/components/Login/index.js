@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./Login.scss";
 import LoginForm from './loginForm';
 import { InitiateLogin } from '../../services';
+import { withRouter } from "react-router-dom";
 
 class Login extends React.PureComponent {
     state = {
@@ -9,10 +10,19 @@ class Login extends React.PureComponent {
         showError: false,
         errorMsg: ""
     }
+    componentDidMount() {
+      if(this.props.user) {
+        this.props.history.push('/images');
+      }
+    }
     attemptLogin = (data) => {
         this.setState({loading: true, showError: false, errorMsg: ''});
         InitiateLogin(data).then(val => {
-            console.log(val);
+            localStorage.setItem("authStatus", JSON.stringify({
+              user: val.username,
+              loggedIn: true
+            }));
+            window.location.reload();
         }).catch(err => {
             this.setState({showError: true, errorMsg: err.message});            
         }).finally(() => {
@@ -37,4 +47,4 @@ class Login extends React.PureComponent {
       }
 }
 
-export default Login;
+export default withRouter(Login);
