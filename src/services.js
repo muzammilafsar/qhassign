@@ -28,7 +28,7 @@ export const getImageList = (page) => {
     {
         token = auth.access_token;
     }
-    return fetch('https://api.unsplash.com/photos?per_page=2', {
+    return fetch('https://api.unsplash.com/photos?per_page=20', {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: {
             'Authorization': 'Bearer ' + token ,

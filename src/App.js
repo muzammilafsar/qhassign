@@ -20,9 +20,9 @@ class App extends React.Component {
     localStorage.removeItem("authStatus")
   }
   login = (data) => {
-    // if(!this.state.user) {
-    //   this.setState({user: data});
-    // }
+    if(!this.state.user) {
+      this.setState({user: data});
+    }
   }
   componentDidMount() {
     let authStatus = localStorage.getItem("authStatus");
@@ -55,11 +55,13 @@ class App extends React.Component {
         {
           this.state.user ? <Navbar logout={this.logout} /> :''
         }
+        <Switch>
         <Route exact path="/" render={() => <Redirect to={"/images"} />}  />
-        <Route exact path="/saved" render={() => <SavedImages user={this.state.user} />}  />
-        <Route exact path="/images" render={() => <ImageListing user={this.state.user} />}/>
+        <Route exact path="/saved" render={() => this.state.user ? <SavedImages user={this.state.user}/> : <Redirect to={"/login"} /> }  />
+        <Route exact path="/images" render={() => this.state.user ?  <ImageListing user={this.state.user}/>: <Redirect to={"/login"}  />}/>
         <Route exact path="/token" component={Authorization} />
-        <Route exact path="/login" render={() => <Login user={this.state.user} />} />
+        <Route exact path="/login" render={() => this.state.user ? <Redirect to={"/images"} /> :  <Login user={this.state.user} login={this.login} />} />
+        </Switch>
         {/* <Login /> */}
         </div>
     );

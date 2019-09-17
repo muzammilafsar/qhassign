@@ -24,7 +24,7 @@ class SavedImages extends React.PureComponent {
     }
     render() {
         return (
-          <div className="image-listing-container row">
+          <div className="image-listing-container">
               {
                   this.state.list.map((val, i) => {
                     return <ImageCard checked={true} add={(a,b) => addToFav(a,b)} remove={(a,b) => {removeFav(a,b); this.remove(i)} } src={val.src} user={this.props.user}/>}

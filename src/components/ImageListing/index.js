@@ -16,13 +16,13 @@ class ImageListing extends React.PureComponent {
     }
     render() {
         return (    
-          <div className="image-listing-container row">
+          <section className="image-listing-container">
               {
                   this.state.list.map(val => {
                     return <ImageCard add={addToFav} remove={removeFav} src={val.urls.small} user={this.props.user}/>}
                     )
               }
-          </div>
+          </section>
         );
       }
 }

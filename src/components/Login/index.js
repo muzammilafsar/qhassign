@@ -22,7 +22,10 @@ class Login extends React.PureComponent {
               user: val.username,
               loggedIn: true
             }));
-            window.location.reload();
+            this.props.login({
+              user: val.username,
+              loggedIn: true
+            });
         }).catch(err => {
             this.setState({showError: true, errorMsg: err.message});            
         }).finally(() => {

@@ -10,7 +10,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 if(!localStorage.getItem("users")) {
     localStorage.setItem("users", JSON.stringify(users));
 }
-
+export const CLIENT_ID = "Your Client ID here";
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
