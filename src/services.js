@@ -23,10 +23,15 @@ export const InitiateLogin = ({username, password}) => {
 
 export const getImageList = (page) => {
     let auth = JSON.parse(localStorage.getItem("auth"));
+    let token = "";
+    if(auth && auth.access_token)
+    {
+        token = auth.access_token;
+    }
     return fetch('https://api.unsplash.com/photos?per_page=2', {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: {
-            'Authorization': 'Bearer '+auth.access_token,
+            'Authorization': 'Bearer ' + token ,
         },
     }).then(val => val.json());
 }
